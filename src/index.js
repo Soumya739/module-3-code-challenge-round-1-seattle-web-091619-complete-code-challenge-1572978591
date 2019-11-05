@@ -54,23 +54,26 @@ function addLikes(){
   CURRENT_IMAGE.like_count++
   let totalLikes = CURRENT_IMAGE.like_count
   span.textContent = totalLikes
-  // fetch(LIKE_URL + CURRENT_IMAGE.id, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': "application/json",
-  //     Accept: "application/json"
-  //   },
-  //   body: JSON.stringify({
-  //     like_count: totalLikes
-  //   })
-  // })
+    fetch(_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      like_count: totalLikes
+    })
+  })
 };
 
 function addNewComment(){
     let newComment = document.getElementById("comment_input")
     console.log(newComment)
-    let newCommentText = newComment.comment.value
-    console.log(newCommentText)
+    let comments = document.getElementById("comments")
+    let commentLi = document.createElement("li")
+    commentLi.textContent = newComment.value
+    comments.append(commentLi)
+
 
     // return fetch(COMMENTS_URL + CURRENT_IMAGE.id {
     //   method: 'POST',
